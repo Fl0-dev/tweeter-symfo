@@ -1,19 +1,110 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Tweeter{% endblock %}</title>
+    <<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="icon" href="{{ asset('img/favicon.png') }}">
+</head>
+<body>
+<header class="section">
+    <div class="container">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <img src="public/img/logo.png" alt="logo Tweeter">
+                </a>
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu has-text-centered">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="{{ path('main') }}">
+                        <span class="icon mr-1"><i class="fas fa-home"></i></span>
+                        Home
+                    </a>
+
+                    <a class="navbar-item" href="{{ path('tweet_create') }}">
+                        <span class="icon mr-1"><i class="fas fa-pen-alt"></i></span>
+                        Tweeter !
+                    </a>
+                </div>
+
+                <div class="navbar-end">
+                    <?php
+                if(empty($_SESSION['user'])) : ?>
+                    <a class="navbar-item button is-info is-light" href="#">
+                        <span class="icon mr-1"><i class="fas fa-book"></i></span>
+                        <strong>Inscription</strong>
+                    </a>
+                    <?php endif;?>
+                    <?php
+                if(empty($_SESSION['user'])) : ?>
+                    <a class="button is-success is-light" href="#">
+                        <span class="icon mr-1"><i class="fas fa-user"></i></span>
+                        <strong>Connexion</strong>
+                    </a>
+                    <?php endif;?>
+                    <?php
+                if(!empty($_SESSION['user'])) : ?>
+
+                    <a class="button is-danger is-light" href="#">
+                        <span class="icon mr-1"><i class="fas fa-times-circle"></i></i></span>
+                        <strong>Déconnexion (<?=$_SESSION['user']['pseudo']?>)</strong>
+                    </a>
+                    <?php endif;?>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+{# read and display all flash messages #}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="flash flash-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<section class="container">
+    {% block body %}{% endblock %}
+</section>
+
+<footer class="section">
+    <div class="container">
+
+        <div >
+            <p >Copyright &copy; Your Website {{ "now"|date('Y') }}</p>
+        </div>
+
+    </div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script>
+    $(document).ready(function() {
+
+// Check for click events on the navbar burger icon
+        $(".navbar-burger").click(function() {
+
+// Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            $(".navbar-burger").toggleClass("is-active");
+            $(".navbar-menu").toggleClass("is-active");
+
+        });
+    });
+</script>
+</body>
 </html>

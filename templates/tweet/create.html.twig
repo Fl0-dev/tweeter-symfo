@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} | Publier{% endblock %}
+
+{% block body %}
+    <h2>Publier votre Tweet</h2>
+    <div class="">
+        {{form_start(tweetForm)}}
+        {{form_widget(tweetForm)}}
+
+        <button class="btn">Publier !</button>
+        {{form_end(tweetForm)}}
+    </div>
+    <br>
+{% endblock %}

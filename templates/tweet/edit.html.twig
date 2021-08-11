@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} | Modif{% endblock %}
+
+{% block body %}
+    <h2>Modifier un Tweet</h2>
+    <div class="">
+        {{form_start(form)}}
+        {{form_widget(form)}}
+
+        <button class="btn">Modifier!</button>
+        {{form_end(form)}}
+    </div>
+    <br>
+{% endblock %}
