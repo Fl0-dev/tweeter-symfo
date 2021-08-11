@@ -6,64 +6,38 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Tweeter{% endblock %}</title>
-    <<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="icon" href="{{ asset('img/favicon.png') }}">
 </head>
 <body>
 <header class="section">
     <div class="container">
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="#">
-                    <img src="public/img/logo.png" alt="logo Tweeter">
-                </a>
-
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-
-            <div id="navbarBasicExample" class="navbar-menu has-text-centered">
-                <div class="navbar-start">
-                    <a class="navbar-item" href="{{ path('main') }}">
-                        <span class="icon mr-1"><i class="fas fa-home"></i></span>
-                        Home
-                    </a>
-
-                    <a class="navbar-item" href="{{ path('tweet_create') }}">
-                        <span class="icon mr-1"><i class="fas fa-pen-alt"></i></span>
-                        Tweeter !
-                    </a>
-                </div>
-
-                <div class="navbar-end">
-                    <?php
-                if(empty($_SESSION['user'])) : ?>
-                    <a class="navbar-item button is-info is-light" href="#">
-                        <span class="icon mr-1"><i class="fas fa-book"></i></span>
-                        <strong>Inscription</strong>
-                    </a>
-                    <?php endif;?>
-                    <?php
-                if(empty($_SESSION['user'])) : ?>
-                    <a class="button is-success is-light" href="#">
-                        <span class="icon mr-1"><i class="fas fa-user"></i></span>
-                        <strong>Connexion</strong>
-                    </a>
-                    <?php endif;?>
-                    <?php
-                if(!empty($_SESSION['user'])) : ?>
-
-                    <a class="button is-danger is-light" href="#">
-                        <span class="icon mr-1"><i class="fas fa-times-circle"></i></i></span>
-                        <strong>Déconnexion (<?=$_SESSION['user']['pseudo']?>)</strong>
-                    </a>
-                    <?php endif;?>
-                </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a class="navbar-brand" href="{{path('main')}}"><img src="{{asset('img/favicon.png')}}" alt="logo Tweeter">TWEETER</a>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('main') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('tweet_create') }}">Tweeter !</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Inscription</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Déconnexion()</a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </div>
@@ -91,20 +65,14 @@
 
     </div>
 </footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-</script>
-<script>
-    $(document).ready(function() {
-
-// Check for click events on the navbar burger icon
-        $(".navbar-burger").click(function() {
-
-// Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-            $(".navbar-burger").toggleClass("is-active");
-            $(".navbar-menu").toggleClass("is-active");
-
-        });
-    });
-</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 </html>
